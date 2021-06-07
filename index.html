@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Space Survival</title>
+        <script src="scripts/phaser.min.js"></script>
+        <script src="scripts/scenes/boot.js"></script>
+        <script src="scripts/scenes/preloader.js"></script>
+        <script src="scripts/scenes/main.js"></script>
+        <script src="scripts/scenes/game.js"></script>
+        <link rel="stylesheet" href="scripts/styles.css">
+    </head>
+
+    <body>
+        <script>
+            window.onload = function () {
+                const config = {
+                    type: Phaser.arcade,
+                    width: 800,
+                    height:600,
+                    physics: {
+                        default: 'arcade',
+                        arcade: {
+                            gravity: {y: 0},
+                        }
+                    }
+                };
+                const game = new Phaser.Game(config);
+                game.scene.add('boot', Boot);
+                game.scene.start('boot');
+            };
+        </script>
+        
+    </body>
+</html>
