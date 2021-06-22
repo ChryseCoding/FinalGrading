@@ -1,5 +1,5 @@
 class Entity extends Phaser.GameObjects.Sprite {
-    constructor(scene, x, y, type) {
+    constructor(scene, x, y, key, type) {
         super(scene, x, y, key);
 
         this.scene = scene;
@@ -70,6 +70,17 @@ class Player extends Entity {
               this.setData("timerShootTick", 0);
             }
         }
+    }
+    
+    onDestroy() {
+        this.scene.time.addEvent({ 
+            delay: 1000,
+            callback: function() {
+              this.scene.scene.start("SceneGameover");
+            },
+            callbackScope: this,
+            loop: false
+        });
     }
 }
 

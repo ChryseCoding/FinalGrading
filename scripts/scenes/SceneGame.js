@@ -6,19 +6,25 @@ class SceneGame extends Phaser.Scene {
     preload() {
         this.load.image("spriteBg0", "assets/imgs/sprBg0.png");
         this.load.image("spriteBg1", "assets/imgs/sprBg1.png");
-        this.load.spritesheet("spriteExplosion", "assets/audio/sprExplosion.png")
-
-        this.load.image("spriteLaserPlayer", "assets/imgs/sprLaserPlayer.png");
-        this.load.image("spritePlayer", "assets/imgs/ship.png", {
+        this.load.spritesheet("spriteExplosion", "assets/imgs/sprExplosion.png", {
             frameWidth: 16,
             frameHeight: 16
         });
-        this.load.image("spriteEnemy1", "assets/imgs/shinyball.png");
+
+        this.load.image("spriteLaserPlayer", "assets/imgs/sprLaserPlayer.png");
+        this.load.spritesheet("spritePlayer", "assets/imgs/ship.png", {
+            frameWidth: 16,
+            frameHeight: 16
+        });
+        this.load.spritesheet("spriteEnemy1", "assets/imgs/shinyball.png", {
+            frameWidth:16,
+            frameHeight: 16
+        });
         this.load.spritesheet("spriteEnemy2", "assets/imgs/sprEnemy0.png", {
             frameWidth: 16,
             frameHeight: 16
         });
-        this.load.image("spriteLaserEnemy", "assets/imgs/sprLaserEnemy0");
+        this.load.image("spriteLaserEnemy", "assets/imgs/sprLaserEnemy0.png");
 
         this.load.audio("sndExplode", "assets/audio/sndExplode0.wav");
         this.load.audio("sndExplode1", "assets/audio/sndExplode1.wav");
@@ -84,7 +90,7 @@ class SceneGame extends Phaser.Scene {
 
         this.input.on('pointerdown', (pointer) => {
 
-            this.bullets.fireBullet(this.ship.x, this.ship.y);
+            this.bullets.playerLaser(this.ship.x, this.ship.y);
 
         });
 
@@ -166,12 +172,6 @@ class SceneGame extends Phaser.Scene {
         if(!this.player.getData("isDead")) {
             this.player.update();
 
-        }
-
-        
-
-        for (let i = 0; i < this.backgrounds.length; i++) {
-            this.backgrounds[i].update();
         }
 
     }
